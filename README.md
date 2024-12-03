@@ -14,7 +14,7 @@ Certifique-se de que os seguintes programas estão instalados em sua máquina:
 
 ---
 
-## **Configurando o MySQL**
+## **Configurando e acessando a API**
 
 1. Atualize o appsettings.json para conectar com o MySql.
 
