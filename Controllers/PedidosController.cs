@@ -98,5 +98,47 @@ namespace YourNamespace.Controllers
         {
             return _context.Pedidos.Any(e => e.id == id);
         }
+
+        [HttpPost("{pedidoId}/adicionar-produto/{produtoId}")]
+        public async Task<IActionResult> AdicionarProdutoAoPedido(int pedidoId, int produtoId)
+        {
+            var pedido = await _context.Pedidos.FindAsync(pedidoId);
+            if (pedido == null || pedido.StatusId != 1) // StatusId 1 = Aguardando Finalização
+            {
+                return BadRequest("Pedido não encontrado ou já finalizado.");
+            }
+
+            var produto = await _context.Produtos.FindAsync(produtoId);
+            if (produto == null)
+            {
+                return NotFound("Produto não encontrado.");
+            }
+
+            var produtoPedido = new ProdutoPedido
+            {
+                PedidoId = pedidoId,
+                ProdutoId = produtoId
+            };
+
+            _context.ProdutosPedidos.Add(produtoPedido);
+            pedido.valor += (int)produto.preco; // Ajusta o valor do pedido
+            await _context.SaveChangesAsync();
+
+            return Ok(new { mensagem = "Produto adicionado ao pedido com sucesso.", pedido });
+        }
+        [HttpPost("{pedidoId}/finalizar")]
+        public async Task<IActionResult> FinalizarPedido(int pedidoId)
+        {
+            var pedido = await _context.Pedidos.FindAsync(pedidoId);
+            if (pedido == null || pedido.StatusId != 1) // StatusId 1 = Aguardando Finalização
+            {
+                return BadRequest("Pedido não encontrado ou já finalizado.");
+            }
+
+            pedido.StatusId = 2; // StatusId 2 = Finalizado
+            await _context.SaveChangesAsync();
+
+            return Ok(new { mensagem = "Pedido finalizado com sucesso.", pedido });
+        }
     }
 }

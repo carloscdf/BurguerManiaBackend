@@ -1,11 +1,21 @@
-public class Produto{
-    public int id {get;set;}
-    public string nome {get;set;} = string.Empty;
-    public string baseDesc {get;set;} = string.Empty; //descrição base
+using System.ComponentModel.DataAnnotations;
 
-    public string fullDesc {get;set;} = string.Empty; //descrição completa
-    public decimal preco {get;set;}
-    public string categoria {get;set;} = string.Empty;
-    public string imagem {get;set;} = string.Empty;
-    public int CategoriaId {get;set;}
- }
+
+public class Produto
+{
+    public int id { get; set; }
+    [Required(ErrorMessage = "O nome do produto é obrigatório.")]
+    public string nome { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "A descrição base do produto é obrigatório.")]
+    public string baseDesc { get; set; } = string.Empty; //descrição base
+    [Required(ErrorMessage = "A descrição completa do produto é obrigatório.")]
+    public string fullDesc { get; set; } = string.Empty; //descrição completa
+    [Required(ErrorMessage = "O preço do produto é obrigatório.")]
+
+    public decimal preco { get; set; }
+    
+    [Required(ErrorMessage = "A imagem do produto é obrigatório.")]  
+    public string imagem { get; set; } = string.Empty;
+    public int CategoriaId { get; set; }
+}
