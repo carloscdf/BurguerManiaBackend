@@ -1,6 +1,6 @@
 # Projeto Backend do BURGUER MANIA com ASP.NET Core e MySQL
 
-Este projeto é um backend criado com ASP.NET Core, que utiliza Entity Framework Core para comunicação com o banco de dados MySQL. Ele também está configurado para se integrar com um frontend Angular: [BURGUER MANIA FRONTEND](https://github.com/carloscdf/BurgueMania).
+Este projeto é um backend de uma hamburgueria criado com ASP.NET Core, que utiliza Entity Framework Core para comunicação com o banco de dados MySQL. Ele também está configurado para se integrar com um frontend Angular: [BURGUER MANIA FRONTEND](https://github.com/carloscdf/BurgueMania). Projeto feito para um exercíco da RESTIC36.
 
 ---
 
@@ -14,7 +14,7 @@ Certifique-se de que os seguintes programas estão instalados em sua máquina:
 
 ---
 
-## **Configurando o MySQL**
+## **Configurando e acessando a API**
 
 1. Atualize o appsettings.json para conectar com o MySql.
 
