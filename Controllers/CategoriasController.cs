@@ -17,14 +17,14 @@ namespace YourNamespace.Controllers
             _context = context;
         }
 
-        // GET: api/Categorias
+        // Método GET: api/Categorias
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Categoria>>> GetCategorias()
         {
             return await _context.Categorias.ToListAsync();
         }
 
-        // GET: api/Categorias/id
+        // Método GET: api/Categorias/id
         [HttpGet("{id}")]
         public async Task<ActionResult<Categoria>> GetCategoria(int id)
         {
@@ -38,7 +38,7 @@ namespace YourNamespace.Controllers
             return categoria;
         }
 
-        // POST: api/Categorias
+        // Método POST: api/Categorias
         [HttpPost]
         public async Task<ActionResult<Categoria>> PostCategoria(Categoria categoria)
         {
@@ -48,7 +48,7 @@ namespace YourNamespace.Controllers
             return CreatedAtAction("GetCategoria", new { id = categoria.id }, categoria);
         }
 
-        // PUT: api/Categorias/id
+        // Método PUT: api/Categorias/id
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategoria(int id, Categoria categoria)
         {
@@ -78,7 +78,7 @@ namespace YourNamespace.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Categorias/id
+        // Método DELETE: api/Categorias/id
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategoria(int id)
         {

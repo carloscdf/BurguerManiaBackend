@@ -17,14 +17,14 @@ namespace YourNamespace.Controllers
             _context = context;
         }
 
-        // GET: api/Status
+        // Método GET: api/Status
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Status>>> GetStatus()
         {
             return await _context.Status.ToListAsync();
         }
 
-        // GET: api/Status/id
+        // Método GET: api/Status/id
         [HttpGet("{id}")]
         public async Task<ActionResult<Status>> GetStatus(int id)
         {
@@ -38,7 +38,7 @@ namespace YourNamespace.Controllers
             return status;
         }
 
-        // POST: api/Status
+        // Método POST: api/Status
         [HttpPost]
         public async Task<ActionResult<Status>> PostStatus(Status status)
         {
@@ -48,7 +48,7 @@ namespace YourNamespace.Controllers
             return CreatedAtAction("GetStatus", new { id = status.id }, status);
         }
 
-        // PUT: api/Status/id
+        // Método PUT: api/Status/id
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStatus(int id, Status status)
         {
@@ -78,7 +78,7 @@ namespace YourNamespace.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Status/id
+        // Método DELETE: api/Status/id
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStatus(int id)
         {

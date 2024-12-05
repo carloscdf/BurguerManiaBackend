@@ -17,14 +17,14 @@ namespace YourNamespace.Controllers
             _context = context;
         }
 
-        // GET: api/PedidoUsuarios
+        // Método GET: api/PedidoUsuarios
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PedidoUsuario>>> GetPedidoUsuarios()
         {
             return await _context.PedidosUsuario.ToListAsync();
         }
 
-        // GET: api/PedidoUsuarios/5
+        // Método GET: api/PedidoUsuarios/5
         [HttpGet("{id}")]
         public async Task<ActionResult<PedidoUsuario>> GetPedidoUsuario(int id)
         {
@@ -38,7 +38,7 @@ namespace YourNamespace.Controllers
             return pedidoUsuario;
         }
 
-        // POST: api/PedidoUsuarios
+        // Método POST: api/PedidoUsuarios
         [HttpPost]
         public async Task<ActionResult<PedidoUsuario>> PostPedidoUsuario(PedidoUsuario pedidoUsuario)
         {
@@ -48,7 +48,7 @@ namespace YourNamespace.Controllers
             return CreatedAtAction("GetPedidoUsuario", new { id = pedidoUsuario.PedidoId }, pedidoUsuario);
         }
 
-        // DELETE: api/PedidoUsuarios/5
+        // Método DELETE: api/PedidoUsuarios/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePedidoUsuario(int id)
         {
