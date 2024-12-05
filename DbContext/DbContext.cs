@@ -140,44 +140,41 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(p => p.CategoriaId);
 
-
         // Configuração de precisão do preço em Produto
         modelBuilder.Entity<Produto>()
             .Property(p => p.preco)
             .HasPrecision(16, 2);
 
-        //Configuração do pedido
+        // Configuração de Pedido
         modelBuilder.Entity<Pedido>().HasData(
-    new Pedido { id = 1, valor = 0, StatusId = 1 }
-);
+            new Pedido { id = 1, valor = 0, StatusId = 1 }
+        );
 
         // Configuração de ProdutoPedido (tabela de associação Produto x Pedido)
-        modelBuilder.Entity<ProdutoPedido>()
-            .HasKey(pp => new { pp.ProdutoId, pp.PedidoId });
-
-        modelBuilder.Entity<ProdutoPedido>()
-            .HasOne<Produto>()
-            .WithMany()
-            .HasForeignKey(pp => pp.ProdutoId);
-
-        modelBuilder.Entity<ProdutoPedido>()
-            .HasOne<Pedido>()
-            .WithMany()
-            .HasForeignKey(pp => pp.PedidoId);
+        modelBuilder.Entity<ProdutoPedido>(entity =>
+        {
+            entity.HasKey(e => e.id);
+            entity.Property(e => e.id).ValueGeneratedOnAdd();
+            entity.HasOne<Produto>()
+                .WithMany()
+                .HasForeignKey(e => e.ProdutoId);
+            entity.HasOne<Pedido>()
+                .WithMany()
+                .HasForeignKey(e => e.PedidoId);
+        });
 
         // Configuração de PedidoUsuario (tabela de associação Pedido x Usuario)
-        modelBuilder.Entity<PedidoUsuario>()
-            .HasKey(up => new { up.UsuarioId, up.PedidoId });
-
-        modelBuilder.Entity<PedidoUsuario>()
-            .HasOne<Usuario>()
-            .WithMany()
-            .HasForeignKey(up => up.UsuarioId);
-
-        modelBuilder.Entity<PedidoUsuario>()
-            .HasOne<Pedido>()
-            .WithMany()
-            .HasForeignKey(up => up.PedidoId);
+        modelBuilder.Entity<PedidoUsuario>(entity =>
+        {
+            entity.HasKey(e => e.id);
+            entity.Property(e => e.id).ValueGeneratedOnAdd();
+            entity.HasOne<Usuario>()
+                .WithMany()
+                .HasForeignKey(e => e.UsuarioId);
+            entity.HasOne<Pedido>()
+                .WithMany()
+                .HasForeignKey(e => e.PedidoId);
+        });
 
         // Configuração de Pedido -> Status
         modelBuilder.Entity<Pedido>()
@@ -185,12 +182,11 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(p => p.StatusId);
 
-
-        //Configuração de Status
+        // Configuração de Status
         modelBuilder.Entity<Status>().HasData(
-       new Status { id = 1, nome = "Aguardando Finalização" },
-       new Status { id = 2, nome = "Finalizado" }
-   );
+            new Status { id = 1, nome = "Aguardando Finalização" },
+            new Status { id = 2, nome = "Finalizado" }
+        );
 
         base.OnModelCreating(modelBuilder);
     }

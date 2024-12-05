@@ -23,5 +23,5 @@ Certifique-se de que os seguintes programas estão instalados em sua máquina:
 3. Execute o comando `dotnet run`.
 
 4. Vá até o navegador e acesse a API pelo link `http://localhost:5202/swagger`.
-5. Execute o comando `dotnet ef migrations add NOVAMIGRACAO`.
-7. 5. Execute o comando `dotnet ef database update`.
+
+5. Execute o comando `dotnet ef database update`.

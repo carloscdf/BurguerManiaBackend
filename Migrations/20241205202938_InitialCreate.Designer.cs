@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BurguerMania.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241205172346_DbUpdated2")]
-    partial class DbUpdated2
+    [Migration("20241205202938_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -125,18 +125,23 @@ namespace BurguerMania.Migrations
 
             modelBuilder.Entity("PedidoUsuario", b =>
                 {
-                    b.Property<int>("UsuarioId")
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id"));
 
                     b.Property<int>("PedidoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("id")
+                    b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
-                    b.HasKey("UsuarioId", "PedidoId");
+                    b.HasKey("id");
 
                     b.HasIndex("PedidoId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("PedidosUsuario");
                 });
@@ -283,18 +288,23 @@ namespace BurguerMania.Migrations
 
             modelBuilder.Entity("ProdutoPedido", b =>
                 {
-                    b.Property<int>("ProdutoId")
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id"));
 
                     b.Property<int>("PedidoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("id")
+                    b.Property<int>("ProdutoId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProdutoId", "PedidoId");
+                    b.HasKey("id");
 
                     b.HasIndex("PedidoId");
+
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("ProdutosPedidos");
                 });
